@@ -23,3 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Maven Release Plugin ###
+*.pom.xml.releaseBackup
+release.properties
