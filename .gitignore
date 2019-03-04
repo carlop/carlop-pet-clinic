@@ -25,5 +25,5 @@
 /.nb-gradle/
 
 ### Maven Release Plugin ###
-*.pom.xml.releaseBackup
+pom.xml.releaseBackup
 release.properties
