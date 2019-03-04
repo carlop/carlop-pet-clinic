@@ -4,7 +4,7 @@
 
     <groupId>es.carlop</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5-SNAPSHOT</version>
 
     <modules>
         <module>pet-clinic-data</module>
@@ -54,6 +54,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:carlop/carlop-pet-clinic.git</developerConnection>
-        <tag>pet-clinic-0.0.4</tag>
+        <tag>pet-clinic-0.0.3</tag>
     </scm>
 </project>
