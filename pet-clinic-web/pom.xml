@@ -10,6 +10,14 @@
 
 <artifactId>pet-clinic-web</artifactId>
 
+<properties>
+    <webjars-bootstrap.version>4.3.1</webjars-bootstrap.version>
+    <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
+    <webjars-popper.version>1.14.6</webjars-popper.version>
+    <wro4j.version>1.8.0</wro4j.version>
+    <mockito.version>2.23.0</mockito.version>
+</properties>
+
 <dependencies>
     <dependency>
         <artifactId>pet-clinic-data</artifactId>
@@ -37,17 +45,17 @@
     <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>
-        <version>3.3.1-1</version>
+        <version>${webjars-jquery.version}</version>
     </dependency>
     <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>popper.js</artifactId>
-        <version>1.14.6</version>
+        <version>${webjars-popper.version}</version>
     </dependency>
     <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
-        <version>4.3.1</version>
+        <version>${webjars-bootstrap.version}</version>
     </dependency>
     <dependency>
         <groupId>org.webjars</groupId>
@@ -60,4 +68,41 @@
         <scope>test</scope>
     </dependency>
 </dependencies>
+
+    <build>
+       <plugins>
+           <plugin>
+               <groupId>ro.isdc.wro4j</groupId>
+               <artifactId>wro4j-maven-plugin</artifactId>
+               <version>${wro4j.version}</version>
+               <executions>
+                   <execution>
+                       <phase>generate-resources</phase>
+                       <goals>
+                           <goal>run</goal>
+                       </goals>
+                   </execution>
+               </executions>
+               <configuration>
+                   <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+                   <cssDestinationFolder>${project.build.directory}/classes/static/resources/css</cssDestinationFolder>
+                   <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
+                   <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
+                   <contextFolder>${basedir}/src/main/sass</contextFolder>
+               </configuration>
+               <dependencies>
+                   <dependency>
+                       <groupId>org.webjars</groupId>
+                       <artifactId>bootstrap</artifactId>
+                       <version>${webjars-bootstrap.version}</version>
+                   </dependency>
+                   <dependency>
+                       <groupId>org.mockito</groupId>
+                       <artifactId>mockito-core</artifactId>
+                       <version>${mockito.version}</version>
+                   </dependency>
+               </dependencies>
+           </plugin>
+       </plugins>
+    </build>
 </project>
