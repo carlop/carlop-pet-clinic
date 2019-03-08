@@ -18,16 +18,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item" th:class="${path == 'front' ? 'nav-item active' : 'nav-item'}">
-                        <a class="nav-link" th:href="@{/}">🏠 Home</a>
+                        <a class="nav-link" th:href="@{/}" th:text="#{homeLink}">Home</a>
                     </li>
                     <li class="nav-item" th:class="${path == 'owners' ? 'nav-item active' : 'nav-item'}">
-                        <a class="nav-link" th:href="@{/owners}">🔍 Owners</a>
+                        <a class="nav-link" th:href="@{/owners}" th:text="#{ownersLink}">Owners</a>
                     </li>
                     <li class="nav-item" th:class="${path == 'vets' ? 'nav-item active' : 'nav-item'}">
-                        <a class="nav-link" th:href="@{/vets}">👨‍️ Veterinarians</a>
+                        <a class="nav-link" th:href="@{/vets}" th:text="#{vetsLink}">Veterinarians</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/asdf}">❌ Error</a>
+                        <a class="nav-link" th:href="@{/asdf}" th:text="#{errorLink}">Error</a>
                     </li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
 <footer>
 <div class="container">
 <div class="row">
-    <p>Made by <a href="https://www.carlop.es">Carlos López</a> with SpringBoot.</p>
+    <p th:utext="#{footer}">Made by <a href="https://www.carlop.es">Carlos López</a> with SpringBoot.</p>
 </div>
 </div>
 </footer>
