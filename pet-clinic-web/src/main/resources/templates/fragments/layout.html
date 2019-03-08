@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, template, path)">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Page title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="row">
+            <a class="navbar-brand" th:href="@{/}">🐶 Pet Clinic</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" th:class="${path == 'front' ? 'nav-item active' : 'nav-item'}">
+                        <a class="nav-link" th:href="@{/}">🏠 Home</a>
+                    </li>
+                    <li class="nav-item" th:class="${path == 'owners' ? 'nav-item active' : 'nav-item'}">
+                        <a class="nav-link" th:href="@{/owners}">🔍 Owners</a>
+                    </li>
+                    <li class="nav-item" th:class="${path == 'vets' ? 'nav-item active' : 'nav-item'}">
+                        <a class="nav-link" th:href="@{/vets}">👨‍️ Veterinarians</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/asdf}">❌ Error</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+    <h1 class="display-4" th:text="${title}">Page title</h1>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+    <th:block th:include="${template}" />
+</div>
+</div>
+
+<footer>
+<div class="container">
+<div class="row">
+    <p>Made by <a href="https://www.carlop.es">Carlos López</a> with SpringBoot.</p>
+</div>
+</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

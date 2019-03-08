@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout('List of Vets', ~{::body}, 'vets')}">
 <head>
     <meta charset="UTF-8">
     <title>List of Vets</title>
 </head>
 <body>
-<!--/*@thymesVar id="vet" type="es.carlop.petclinic.model.Vet"*/-->
-    <h1 th:text="'List of Vets'">List of Vets</h1>
-
-    <table>
-    <thead>
+<!--/*@thymesVar id="owner" type="es.carlop.petclinic.model.Vet"*/-->
+<table class="table">
+    <thead class="thead-light">
     <tr>
         <th>Id</th>
         <th>First Name</th>
