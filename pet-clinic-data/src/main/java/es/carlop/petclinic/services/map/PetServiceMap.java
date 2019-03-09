@@ -1,13 +1,13 @@
 package es.carlop.petclinic.services.map;
 
 import es.carlop.petclinic.model.Pet;
-import es.carlop.petclinic.services.CrudService;
+import es.carlop.petclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
         return super.findAll();
@@ -20,7 +20,7 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements Crud
 
     @Override
     public Pet save(Pet pet) {
-        return save(pet);
+        return super.save(pet);
     }
 
     @Override
