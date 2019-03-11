@@ -10,15 +10,19 @@
     <thead class="thead-light">
     <tr>
         <th>Id</th>
-        <th th:text="#{firstName}">First Name</th>
-        <th th:text="#{lastName}">Last Name</th>
+        <th th:text="#{name}">First Name</th>
+        <th th:text="#{address}">Address</th>
+        <th th:text="#{city}">City</th>
+        <th th:text="#{telephone}">Telephone</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="owner : ${owners}">
         <td th:text="${owner.id}">1</td>
-        <td th:text="${owner.firstName}">Joe</td>
-        <td th:text="${owner.lastName}">Buck</td>
+        <td><a href="#" th:href="@{'/owners/' + ${owner.id}}" th:text="${owner.firstName + ' ' + owner.lastName}">Joe</a></td>
+        <td th:text="${owner.address}">Fake Street</td>
+        <td th:text="${owner.city}">Springfield</td>
+        <td th:text="${owner.telephone}">123</td>
     </tr>
     </tbody>
 </table>

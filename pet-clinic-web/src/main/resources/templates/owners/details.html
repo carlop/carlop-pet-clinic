@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(#{ownersDetailsTitle}, ~{::body}, 'owners')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Details of Owner</title>
+</head>
+<body>
+<!--/*@thymesVar id="owner" type="es.carlop.petclinic.model.Owner"*/-->
+<!--/*@thymesVar id="pet" type="es.carlop.petclinic.model.Pet"*/-->
+<table class="table table-hover" th:object="${owner}">
+    <tbody>
+    <tr>
+        <td>Id</td>
+        <td th:text="${owner.id}">1</td>
+    </tr>
+    <tr>
+        <td th:text="#{firstName}">First Name</td>
+        <td th:text="${owner.firstName}">Joe</td>
+    </tr>
+    <tr>
+        <td th:text="#{lastName}">Last Name</td>
+        <td th:text="${owner.lastName}">Buck</td>
+    </tr>
+    <tr>
+        <td th:text="#{address}">Address</td>
+        <td th:text="${owner.address}">Address</td>
+    </tr>
+    <tr>
+        <td th:text="#{city}">City</td>
+        <td th:text="${owner.city}">City</td>
+    </tr>
+    <tr>
+        <td th:text="#{telephone}">Telephone</td>
+        <td th:text="${owner.telephone}">444333222</td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<h2 th:text="#{petsAndVisits}">Pets and Visits</h2>
+<table class="table table-hover" th:object="${owner}">
+    <thead class="thead-light">
+    <tr>
+        <th>Id</th>
+        <th th:text="#{name}">First Name</th>
+        <th th:text="#{petType}">Pet Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pet : ${owner.pets}">
+        <td th:text="${pet.id}">1</td>
+        <td th:text="${pet.name}">Joe</td>
+        <td th:text="${pet.petType.name}">Buck</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
