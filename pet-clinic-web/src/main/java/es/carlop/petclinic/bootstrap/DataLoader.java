@@ -5,6 +5,7 @@ import es.carlop.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.management.ObjectName;
 import java.time.LocalDate;
 
 @Component
@@ -111,6 +112,13 @@ public class DataLoader implements CommandLineRunner {
         owner3.getPets().add(fionasCat);
 
         ownerService.save(owner3);
+
+        ownerService.save(Owner.builder()
+                .address("Fake Street")
+                .firstName("Chuache")
+                .lastName("Científico")
+                .telephone("42134124")
+                .build());
 
         System.out.println("Loaded Owners...");
 
