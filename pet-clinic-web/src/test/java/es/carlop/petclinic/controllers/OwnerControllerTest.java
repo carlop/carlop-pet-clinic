@@ -55,7 +55,7 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnMany() throws Exception {
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
+        when(ownerService.findAllByLastNameLikeIgnoreCase(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
                 Owner.builder().id(2L).build()));
 
         mockMvc.perform(get("/owners"))
@@ -66,7 +66,7 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnOne() throws Exception {
-        when(ownerService.findAllByLastNameLike(any())).thenReturn(Arrays.asList(Owner.builder().id(1L).build()));
+        when(ownerService.findAllByLastNameLikeIgnoreCase(any())).thenReturn(Arrays.asList(Owner.builder().id(1L).build()));
 
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
