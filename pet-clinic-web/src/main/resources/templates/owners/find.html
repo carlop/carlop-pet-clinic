@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(#{findOwner}, ~{::body}, 'owners')}">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Owners</title>
+</head>
+<body>
+<!--/*@thymesVar id="owner" type="es.carlop.petclinic.model.Owner"*/-->
+<form th:object="${owner}" th:action="@{/owners}" method="get">
+    <div class="form-group">
+        <input class="form-control form-control-lg" th:field="*{lastName}" placeholder="Last Name" th:placeholder="#{lastName}">
+        <span class="help-inline">
+            <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+                <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+            </div>
+        </span>
+    </div>
+    <button type="submit" class="btn btn-primary" th:text="#{findOwner}">Find Owner</button>
+</form>
+
+</body>
+</html>
