@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <th:block th:fragment="input (label, name, type)">
+        <div class="form-group col" th:with="valid=${!#fields.hasErrors(name)}">
+            <label class="col-sm-2 col-form-label" th:for="${name}" th:text="${label}">Label</label>
+            <div class="col-sm-10" th:switch="${type}">
+                <input class="form-control" type="text" th:case="'text'" th:id="${name}" th:field="*{__${name}__}">
+                <input class="form-control" type="text" th:case="'date'" th:id="${name}" th:field="*{__${name}__}"
+                       placeholder="YYYY-MM-DD" title="Enter a date in this format: YYYY-MM-DD"
+                       pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+                <th:block th:if="${!valid}">
+                    <span class="help-inline" th:errors="*{__${name}__}">Error</span>
+                </th:block>
+            </div>
+        </div>
+    </th:block>
+</form>
+</body>
+</html>
