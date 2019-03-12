@@ -7,52 +7,70 @@
 <body>
 <!--/*@thymesVar id="owner" type="es.carlop.petclinic.model.Owner"*/-->
 <!--/*@thymesVar id="pet" type="es.carlop.petclinic.model.Pet"*/-->
-<table class="table table-hover" th:object="${owner}">
+<table class="table table-striped" th:object="${owner}">
     <tbody>
-    <tr>
-        <td>Id</td>
-        <td th:text="${owner.id}">1</td>
-    </tr>
-    <tr>
-        <td th:text="#{firstName}">First Name</td>
-        <td th:text="${owner.firstName}">Joe</td>
-    </tr>
-    <tr>
-        <td th:text="#{lastName}">Last Name</td>
-        <td th:text="${owner.lastName}">Buck</td>
-    </tr>
-    <tr>
-        <td th:text="#{address}">Address</td>
-        <td th:text="${owner.address}">Address</td>
-    </tr>
-    <tr>
-        <td th:text="#{city}">City</td>
-        <td th:text="${owner.city}">City</td>
-    </tr>
-    <tr>
-        <td th:text="#{telephone}">Telephone</td>
-        <td th:text="${owner.telephone}">444333222</td>
-    </tr>
+        <tr>
+            <td th:text="#{firstName}">First Name</td>
+            <td th:text="${owner.firstName}">Joe</td>
+        </tr>
+        <tr>
+            <td th:text="#{lastName}">Last Name</td>
+            <td th:text="${owner.lastName}">Buck</td>
+        </tr>
+        <tr>
+            <td th:text="#{address}">Address</td>
+            <td th:text="${owner.address}">Address</td>
+        </tr>
+        <tr>
+            <td th:text="#{city}">City</td>
+            <td th:text="${owner.city}">City</td>
+        </tr>
+        <tr>
+            <td th:text="#{telephone}">Telephone</td>
+            <td th:text="${owner.telephone}">444333222</td>
+        </tr>
     </tbody>
 </table>
-<hr>
 <h2 th:text="#{petsAndVisits}">Pets and Visits</h2>
-<table class="table table-hover" th:object="${owner}">
-    <thead class="thead-light">
-    <tr>
-        <th>Id</th>
-        <th th:text="#{name}">First Name</th>
-        <th th:text="#{petType}">Pet Type</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="pet : ${owner.pets}">
-        <td th:text="${pet.id}">1</td>
-        <td th:text="${pet.name}">Joe</td>
-        <td th:text="${pet.petType.name}">Buck</td>
-    </tr>
-    </tbody>
-</table>
+<div class="container" th:switch="${#sets.size(owner.pets)}">
+    <div class="row">
+        <p th:case="0" th:text="#{noPets}">No pets</p>
+        <table class="table" th:case="*">
+            <thead class="thead-light">
+            <tr>
+                <th th:text="#{name}">First Name</th>
+                <th th:text="#{petType}">Pet Type</th>
+                <th th:text="#{birthDate}">Birth Date</th>
+                <th th:text="#{visits}">Visits</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pet : ${owner.pets}">
+                <td th:text="${pet.name}">Joe</td>
+                <td th:text="${pet.petType.name}">Buck</td>
+                <td th:text="${#temporals.format(pet.birthDate, 'dd/MM/yyyy')}">17/06/2018</td>
+                <td th:switch="${#sets.size(pet.visits)}">
+                    <p th:case="0" th:text="#{noVisits}">No visits</p>
+                    <table class="table table-borderless table-striped" th:case="*">
+                        <thead>
+                        <tr>
+                            <th>Visit Date</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="visit : ${pet.visits}">
+                            <td th:text="${#temporals.format(visit.date, 'dd/MM/yyyy @ HH:mm')}">/17/04/2019 @ 17:00</td>
+                            <td th:text="${visit.description}">Description</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>
