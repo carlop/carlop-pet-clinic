@@ -34,7 +34,7 @@
 <div class="container">
     <div class="row">
         <a th:href="@{'/owners/' + ${owner.id} + '/edit'}" class="btn btn-outline-primary" th:text="#{updateOwner}">Update Owner</a>
-        <a href="" class="btn btn-outline-primary" th:text="#{addPet}">Add Pet</a>
+        <a th:href="@{'/owners/' + ${owner.id} + '/pets/new'}" class="btn btn-outline-primary" th:text="#{addPet}">Add Pet</a>
     </div>
 </div>
 <h2 th:text="#{petsAndVisits}">Pets and Visits</h2>
@@ -52,8 +52,8 @@
             </thead>
             <tbody>
             <tr th:each="pet : ${owner.pets}">
-                <td th:text="${pet.name}">Joe</td>
-                <td th:text="${pet.petType.name}">Buck</td>
+                <td><a th:href="@{'/owners/' + ${owner.id} + '/pets/' + ${pet.id} + '/edit' }" th:text="${pet.name}">Coco</td>
+                <td th:text="${pet.petType.name}">Dog</td>
                 <td th:text="${#temporals.format(pet.birthDate, 'dd/MM/yyyy')}">17/06/2018</td>
                 <td th:switch="${#sets.size(pet.visits)}">
                     <p th:case="0" th:text="#{noVisits}">No visits</p>

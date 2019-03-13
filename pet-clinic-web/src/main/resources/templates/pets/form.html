@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(#{updatePet}, ~{::body}, 'pets')}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(#{updatePet}, ~{::body}, 'owners')}">
 <head>
     <meta charset="UTF-8">
     <title>Pets Form</title>
@@ -12,12 +12,12 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title" th:text="#{owner}">Owner</h5>
-            <p class="card-text" th:text="${pet.owner.firstName + ' ' + pet.owner.lastName}">Owner</p>
+            <p class="card-text" th:text="${pet.owner?.firstName + ' ' + pet.owner?.lastName}">Owner</p>
         </div>
     </div>
     <input th:replace="~{fragments/inputField :: input (#{name}, 'name', 'text')}" />
     <input th:replace="~{fragments/inputField :: input (#{birthDate}, 'birthDate', 'date')}" />
-    <input th:replace="~{fragments/selectField :: input (#{petType}, 'petType', ${types})}" />
+    <input th:replace="~{fragments/selectField :: select (#{petType}, 'petType', ${types})}" />
     <div class="form-group row">
         <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${pet.isNew()} ? #{addPet} : #{updatePet}" th:text="${pageTitle}">Add Pet</button>
     </div>
