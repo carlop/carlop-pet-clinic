@@ -7,7 +7,7 @@
 <body>
 <form>
     <th:block th:fragment="input (label, name, type)">
-        <div class="form-group col" th:with="valid=${!#fields.hasErrors(name)}">
+        <div class="form-group row" th:with="valid=${!#fields.hasErrors(name)}">
             <label class="col-sm-2 col-form-label" th:for="${name}" th:text="${label}">Label</label>
             <div class="col-sm-10" th:switch="${type}">
                 <input class="form-control" type="text" th:case="'text'" th:id="${name}" th:field="*{__${name}__}">

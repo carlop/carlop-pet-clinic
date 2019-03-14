@@ -12,9 +12,7 @@
     <input th:replace="~{fragments/inputField :: input (#{address}, 'address', 'text')}" />
     <input th:replace="~{fragments/inputField :: input (#{city}, 'city', 'text')}" />
     <input th:replace="~{fragments/inputField :: input (#{telephone}, 'telephone', 'text')}" />
-    <div class="form-group row">
-        <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${owner.isNew()} ? #{addOwner} : #{updateOwner}" th:text="${pageTitle}">Add Owner</button>
-    </div>
+    <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${owner.isNew()} ? #{addOwner} : #{updateOwner}" th:text="${pageTitle}">Add Owner</button>
 </form>
 
 </body>

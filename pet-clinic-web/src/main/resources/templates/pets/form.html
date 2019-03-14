@@ -18,8 +18,7 @@
     <input th:replace="~{fragments/inputField :: input (#{name}, 'name', 'text')}" />
     <input th:replace="~{fragments/inputField :: input (#{birthDate}, 'birthDate', 'date')}" />
     <input th:replace="~{fragments/selectField :: select (#{petType}, 'petType', ${types})}" />
-    <div class="form-group row">
-        <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${pet.isNew()} ? #{addPet} : #{updatePet}" th:text="${pageTitle}">Add Pet</button>
+    <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${pet.isNew()} ? #{addPet} : #{updatePet}" th:text="${pageTitle}">Add Pet</button>
     </div>
 </form>
 
