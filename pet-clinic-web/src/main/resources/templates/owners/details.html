@@ -52,9 +52,9 @@
             </thead>
             <tbody>
             <tr th:each="pet : ${owner.pets}">
-                <td><a th:href="@{'/owners/' + ${owner.id} + '/pets/' + ${pet.id} + '/edit' }" th:text="${pet.name}">Coco</td>
+                <td><a th:href="@{'/owners/' + ${owner.id} + '/pets/' + ${pet.id} + '/edit' }" th:text="${pet.name}">Coco</a></td>
                 <td th:text="${pet.petType.name}">Dog</td>
-                <td th:text="${#temporals.format(pet.birthDate, 'dd/MM/yyyy')}">17/06/2018</td>
+                <td th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}">17/06/2018</td>
                 <td th:switch="${#sets.size(pet.visits)}">
                     <p th:case="0" th:text="#{noVisits}">No visits</p>
                     <table class="table table-borderless table-striped" th:case="*">
@@ -66,7 +66,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="visit : ${pet.visits}">
-                            <td th:text="${#temporals.format(visit.date, 'dd/MM/yyyy @ HH:mm')}">/17/04/2019 @ 17:00</td>
+                            <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}">17/04/2019 @ 17:00</td>
                             <td th:text="${visit.description}">Description</td>
                         </tr>
                         </tbody>
