@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(#{addVisit}, ~{::body}, 'owners')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets Form</title>
+</head>
+<body>
+<!--/*@thymesVar id="visit" type="es.carlop.petclinic.model.Visit"*/-->
+<!--/*@thymesVar id="pet" type="es.carlop.petclinic.model.Pet"*/-->
+<!--/*@thymesVar id="owner" type="es.carlop.petclinic.model.Owner"*/-->
+<form th:object="${visit}" method="post">
+    <input type="hidden" name="id" th:value="*{id}">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="#{pet}">Pet</h5>
+            <p class="card-text" th:text="${pet.name}">Pet</p>
+        </div>
+    </div>
+    <input th:replace="~{fragments/inputField :: input (#{visitDate}, 'date', 'date')}" />
+    <input th:replace="~{fragments/inputField :: input (#{description}, 'description', 'text')}" />
+    <button class="btn btn-outline-primary" type="submit" th:with="pageTitle=${visit.isNew()} ? #{addVisit} : #{updateVisit}" th:text="${pageTitle}">Add Visit</button>
+</form>
+<h2 th:text="#{previousVisits}">Previous Visits</h2>
+<table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th>Visit Date</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${!visit.isNew()}" th:each="visit : ${pet.visits}">
+        <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}">17/04/2019 @ 17:00</td>
+        <td th:text="${visit.description}">Description</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
