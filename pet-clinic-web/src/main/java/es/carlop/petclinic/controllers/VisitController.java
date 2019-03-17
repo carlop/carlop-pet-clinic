@@ -48,12 +48,12 @@ public class VisitController {
     }
 
     @PostMapping("/visits/new")
-    public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
+    public String processNewVisitForm(@PathVariable("ownerId") Long ownerId, @Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
             return PETS_VISIT_FORM;
         } else {
             visitService.save(visit);
-            return "redirect:/owners/{ownerId}";
+            return "redirect:/owners/" + ownerId;
         }
     }
 
@@ -64,12 +64,12 @@ public class VisitController {
     }
 
     @PostMapping("/visits/{visitId}/edit")
-    public String processUpdateVisitForm(@Valid Visit visit, BindingResult result) {
+    public String processUpdateVisitForm(@PathVariable("ownerId") Long ownerId, @Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
             return PETS_VISIT_FORM;
         } else {
             visitService.save(visit);
-            return "redirect:/owners/{ownerId}";
+            return "redirect:/owners/" + ownerId;
         }
     }
 
