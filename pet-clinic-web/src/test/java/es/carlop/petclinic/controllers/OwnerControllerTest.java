@@ -12,9 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -33,13 +31,13 @@ class OwnerControllerTest {
     @InjectMocks
     OwnerController ownerController;
 
-    private Set<Owner> owners;
+    private List<Owner> owners;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     void setUp() {
-        owners = new HashSet<>();
+        owners = new ArrayList<>();
         owners.add(Owner.builder().id(1L).build());
         owners.add(Owner.builder().id(2L).build());
 
@@ -57,8 +55,7 @@ class OwnerControllerTest {
 
     @Test
     void processFindFormReturnMany() throws Exception {
-        when(ownerService.findAllByLastNameLikeIgnoreCase(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1L).build(),
-                Owner.builder().id(2L).build()));
+        when(ownerService.findAllByLastNameLikeIgnoreCase(anyString())).thenReturn(owners);
 
         mockMvc.perform(get("/owners"))
                 .andExpect(status().isOk())
@@ -73,6 +70,17 @@ class OwnerControllerTest {
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/owners/1"));
+    }
+
+    @Test
+    void processFindFormEmptyReturnMany() throws Exception {
+        when(ownerService.findAllByLastNameLikeIgnoreCase(anyString()))
+                .thenReturn(owners);
+
+        mockMvc.perform(get("/owners").param("lastName", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/index"))
+                .andExpect(model().attribute("owners", hasSize(2)));
     }
 
     @Test
