@@ -9,16 +9,19 @@
 <table class="table table-hover">
     <thead class="thead-light">
     <tr>
-        <th>Id</th>
-        <th th:text="#{firstName}">First Name</th>
-        <th th:text="#{lastName}">Last Name</th>
+        <th th:text="#{name}">Name</th>
+        <th th:text="#{specialities}">Specialities</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="vet : ${vets}">
-        <td th:text="${vet.id}">1</td>
-        <td th:text="${vet.firstName}">Joe</td>
-        <td th:text="${vet.lastName}">Buck</td>
+        <td th:text="${vet.firstName + ' '+ vet.lastName}">Joe Buck</td>
+        <td th:switch="${#sets.size(vet.specialities)}">
+            <th:block th:case="0" th:text="#{none}">None</th:block>
+            <th:block th:case="*">
+                <th:block th:each="speciality, iterStat : ${vet.specialities}" th:text="${iterStat.last}? ${speciality.description} : ${speciality.description + ', '}">Surgery</th:block>
+            </th:block>
+        </td>
     </tr>
     </tbody>
 </table>
